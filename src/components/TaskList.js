@@ -7,9 +7,11 @@ export default function TaskList() {
     <ul>
       {tasks.map((task) => (
         // <div className="flex justify-end">
-        <li key={task.id} className="flex justify-between bg-red-400">
-          <Task task={task} />
-        </li>
+        <div className="flex flex-row">
+          <li key={task.id} className="flex flex-row">
+            <Task task={task} />
+          </li>
+        </div>
         // </div>
       ))}
     </ul>
@@ -41,44 +43,45 @@ function Task({ task }) {
       </>
     );
   } else {
-    taskContent = (
-      <>
-        {task.text}
+    taskContent = <>{task.text}</>;
+  }
+  return (
+    <label className="flex justify-between w-[500px] mb-2 mt-2">
+      <div>
+        <input
+          type="checkbox"
+          checked={task.done}
+          onChange={(e) => {
+            dispatch({
+              type: "changed",
+              task: {
+                ...task,
+                done: e.target.checked,
+              },
+            });
+          }}
+        />
+        {taskContent}
+      </div>
+      <div className="flex justify-end">
         <button
           onClick={() => setIsEditing(true)}
           className="rounded bg-blue-400 p-1 w-[50px]"
         >
           Edit
         </button>
-      </>
-    );
-  }
-  return (
-    <label>
-      <input
-        type="checkbox"
-        checked={task.done}
-        onChange={(e) => {
-          dispatch({
-            type: "changed",
-            task: {
-              ...task,
-              done: e.target.checked,
-            },
-          });
-        }}
-      />
-      {taskContent}
-      <button
-        onClick={() => {
-          dispatch({
-            type: "deleted",
-            id: task.id,
-          });
-        }}
-      >
-        Delete
-      </button>
+        <button
+          onClick={() => {
+            dispatch({
+              type: "deleted",
+              id: task.id,
+            });
+          }}
+          className="bg-red-400 p-1 rounded ml-2"
+        >
+          Delete
+        </button>
+      </div>
     </label>
   );
 }

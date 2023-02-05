@@ -7,7 +7,7 @@ const Home = () => {
     <>
       <div className="flex items-center h-[742px]">
         <div className="m-auto border p-2">
-          <h1 className="text-center mb-3">Day off in Kyoto</h1>
+          <h1 className="text-center mb-3">Mahasiswa Cuy University</h1>
           <AddTask />
           <TaskList />
         </div>

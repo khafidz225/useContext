@@ -6,7 +6,7 @@ export default function AddTask() {
   const dispatch = useTasksDispatch();
   return (
     <>
-      <div className="flex">
+      <div className="flex justify-between">
         <input
           placeholder="Add task"
           value={text}
@@ -25,7 +25,6 @@ export default function AddTask() {
         >
           save changes
         </button>
-        <p className="bg-red-400 "></p>
       </div>
     </>
   );
